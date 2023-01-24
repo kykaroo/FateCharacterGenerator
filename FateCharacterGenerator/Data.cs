@@ -12,7 +12,8 @@ public class MainCharacterInfo
         var racePath = Directory
             .GetDirectories(Path.Combine(Directory.GetCurrentDirectory(), "CharacterTemplates", "Race Info"), "*",
                 SearchOption.TopDirectoryOnly).ToList();
-        for (var index = 0; index < racePath.Count; index++) RaceList.Add(new DirectoryInfo(racePath[index]).Name);
+        for (var index = 0; index < racePath.Count; index++)
+            RaceList.Add(new DirectoryInfo(racePath[index]).Name);
 
         var genderPath = Directory
             .GetDirectories(Path.Combine(Directory.GetCurrentDirectory(), "CharacterTemplates", "Gender"), "*",

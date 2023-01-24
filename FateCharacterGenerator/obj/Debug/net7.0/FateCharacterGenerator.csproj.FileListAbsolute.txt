@@ -215,3 +215,4 @@ C:\Users\ZXC\FateCharacterGenerator\FateCharacterGenerator\bin\Debug\net7.0\Char
 C:\Users\ZXC\FateCharacterGenerator\FateCharacterGenerator\bin\Debug\net7.0\CharacterTemplates\Race Info\Эльф\LastName.txt
 C:\Users\ZXC\FateCharacterGenerator\FateCharacterGenerator\bin\Debug\net7.0\CharacterTemplates\Gender\Женский\Женский.txt
 C:\Users\ZXC\FateCharacterGenerator\FateCharacterGenerator\bin\Debug\net7.0\CharacterTemplates\Gender\Мужской\Мужской.txt
+C:\Users\ZXC\FateCharacterGenerator\FateCharacterGenerator\bin\Debug\net7.0\Save\Не удалять, иначе папка не попадет в билд\Не удалять, иначе папка не попадет в билд.txt

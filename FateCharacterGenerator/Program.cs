@@ -4,6 +4,9 @@ var characterGenerator = new CharacterGenerator();
 var character = new Character();
 var options = "";
 var userInput = 0;
+string savePath = Path.Combine(Directory.GetCurrentDirectory(), "Save");
+int savesCount = new DirectoryInfo(savePath).GetFiles().Length;
+
 
 var mainMenuOptions = new List<string>();
 mainMenuOptions.Add("1. Создать персонажа");
@@ -36,15 +39,7 @@ void GenerateCharacter()
 {
     character = characterGenerator.CreateCharacter();
     Console.Clear();
-    Console.WriteLine("Имя:" + character.Name + " " + character.LastName);
-    Console.WriteLine("Раса:" + character.Race);
-    Console.WriteLine("Пол:" + character.Gender);
-    Console.WriteLine("Предистория:" + character.BackGround);
-    Console.WriteLine("Черта характера:" + character.Trait);
-    Console.WriteLine("Привязанность:" + character.Devotion);
-    Console.WriteLine("Идеал:" + character.Ideal);
-    Console.WriteLine("Слабость:" + character.Weakness);
-    Console.WriteLine("\n___________________________________________________\n");
+    DisplayCharacter();
     userInput = characterGenerator.UserInputCheck(1, afterGenerationOptions.Count,
         CreateOptionString(afterGenerationOptions));
     switch (userInput)
@@ -75,10 +70,41 @@ string CreateOptionString(List<string> optionsList)
 
 void SaveCharacter()
 {
-    //TODO Сделать возможность сохранения результата в директорию
+    string filePath = Path.Combine(savePath, $"{savesCount + 1}. " + $"{character.Name} {character.LastName}" + ".txt");
+    var file = new FileInfo(filePath);
+
+    using (var streamWriter = file.CreateText())
+    {
+        streamWriter.WriteLine("Имя: " + character.Name + " " + character.LastName);
+        streamWriter.WriteLine("Раса: " + character.Race);
+        streamWriter.WriteLine("Пол: " + character.Gender);
+        streamWriter.WriteLine("Предистория: " + character.BackGround);
+        streamWriter.WriteLine("Черта характера: " + character.Trait);
+        streamWriter.WriteLine("Привязанность: " + character.Devotion);
+        streamWriter.WriteLine("Идеал: " + character.Ideal);
+        streamWriter.WriteLine("Слабость: " + character.Weakness);
+    }
+
+    savesCount++;
+    DisplayCharacter();
+    Console.WriteLine("Сохранение успешно\nНажмите Enter для продолжения");
+    Console.ReadLine();
 }
 
 void Quit()
 {
     Environment.Exit(0);
+}
+
+void DisplayCharacter()
+{
+    Console.WriteLine("Имя: " + character.Name + " " + character.LastName);
+    Console.WriteLine("Раса: " + character.Race);
+    Console.WriteLine("Пол: " + character.Gender);
+    Console.WriteLine("Предистория: " + character.BackGround);
+    Console.WriteLine("Черта характера: " + character.Trait);
+    Console.WriteLine("Привязанность: " + character.Devotion);
+    Console.WriteLine("Идеал: " + character.Ideal);
+    Console.WriteLine("Слабость: " + character.Weakness);
+    Console.WriteLine("___________________________________________________");
 }
