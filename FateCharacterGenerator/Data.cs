@@ -2,36 +2,30 @@
 
 public class MainCharacterInfo
 {
+    public List<string> BackgroundList = new();
+    public List<string> GenderList = new();
+
+    public List<string> RaceList = new();
+
     public MainCharacterInfo()
     {
-        List<string> racePath =  Directory
+        var racePath = Directory
             .GetDirectories(Path.Combine(Directory.GetCurrentDirectory(), "CharacterTemplates", "Race Info"), "*",
                 SearchOption.TopDirectoryOnly).ToList();
-        for (var index = 0; index < racePath.Count; index++)
-        {
-            RaceList.Add(new DirectoryInfo(racePath[index]).Name);
-        }
+        for (var index = 0; index < racePath.Count; index++) RaceList.Add(new DirectoryInfo(racePath[index]).Name);
 
-        List<string> genderPath = Directory
+        var genderPath = Directory
             .GetDirectories(Path.Combine(Directory.GetCurrentDirectory(), "CharacterTemplates", "Gender"), "*",
                 SearchOption.TopDirectoryOnly).ToList();
         for (var index = 0; index < genderPath.Count; index++)
-        {
             GenderList.Add(new DirectoryInfo(genderPath[index]).Name);
-        }
-        
-        List<string> backgroundPath = Directory
+
+        var backgroundPath = Directory
             .GetDirectories(Path.Combine(Directory.GetCurrentDirectory(), "CharacterTemplates", "Background"), "*",
                 SearchOption.TopDirectoryOnly).ToList();
         for (var index = 0; index < backgroundPath.Count; index++)
-        {
             BackgroundList.Add(new DirectoryInfo(backgroundPath[index]).Name);
-        }
     }
-
-    public List<string> RaceList = new();
-    public List<string> GenderList = new();
-    public List<string> BackgroundList = new();
 }
 
 public class Names

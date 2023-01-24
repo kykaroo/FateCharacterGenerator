@@ -3,18 +3,15 @@
 internal class CharacterGenerator
 {
     private readonly MainCharacterInfo mainCharacterInfo = new();
-    private Character Character;
     private readonly Random rnd = new();
+    private Character Character;
     private int userInput;
-    private int userInputMax;
-    private int userInputMin;
 
     public Character CreateCharacter()
     {
-        userInputMax = 2;
-        userInputMin = 1;
-        if (UserInputCheck(userInputMin, userInputMax, "1. Создать персонажа вручную\n2. Cгенерировать случайно?") == 2)
+        if (UserInputCheck(1, 2, "1. Создать персонажа вручную\n2. Cгенерировать случайно?") == 2)
             return RandomGenerator();
+        Console.Clear();
 
         string message = "Выбери расу: \n" + "0. Случайная";
         for (var index = 0; index < mainCharacterInfo.RaceList.Count; index++)
@@ -23,6 +20,7 @@ internal class CharacterGenerator
         Character.Race = userInput == 0
             ? mainCharacterInfo.RaceList[rnd.Next(0, mainCharacterInfo.RaceList.Count)]
             : mainCharacterInfo.RaceList[userInput - 1];
+        Console.Clear();
 
         message = "Выбери пол персонажа:\n0. Случайный";
         for (var index = 0; index < mainCharacterInfo.GenderList.Count; index++)
@@ -31,6 +29,7 @@ internal class CharacterGenerator
         Character.Gender = userInput == 0
             ? mainCharacterInfo.GenderList[rnd.Next(0, mainCharacterInfo.GenderList.Count)]
             : mainCharacterInfo.GenderList[userInput - 1];
+        Console.Clear();
 
         message = "Выбери предисторию персонажа:\n0. Случайная";
         for (var index = 0; index < mainCharacterInfo.BackgroundList.Count; index++)
@@ -39,6 +38,8 @@ internal class CharacterGenerator
         Character.BackGround = userInput == 0
             ? mainCharacterInfo.BackgroundList[rnd.Next(0, mainCharacterInfo.BackgroundList.Count)]
             : mainCharacterInfo.BackgroundList[userInput - 1];
+        Console.Clear();
+
         //TODO Сделать возможность выбора нескольких предисторий
 
         var deepCharacterInfo = new DeepCharacterInfo(Character);
@@ -49,10 +50,11 @@ internal class CharacterGenerator
         Character.Devotion = deepCharacterInfo.Devotion;
         Character.Ideal = deepCharacterInfo.Ideal;
         Character.Weakness = deepCharacterInfo.Weakness;
+        Console.Clear();
         return Character;
     }
 
-    private int UserInputCheck(int min, int max, string message)
+    public int UserInputCheck(int min, int max, string message)
     {
         while (true)
         {
@@ -100,7 +102,7 @@ internal class CharacterGenerator
         return character;
     }
 
-    void ShowResult(Character character)
+    private void ShowResult(Character character)
     {
         //TODO Сделать вывод на консоль персонажа по мере выборов
     }
